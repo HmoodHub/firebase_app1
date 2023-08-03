@@ -1,3 +1,4 @@
+import 'package:firebase_app1/screens/auth/login_screen.dart';
 import 'package:firebase_app1/screens/auth/verification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class ForgetPassword extends StatelessWidget {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
         if (state is ForgetPasswordSuccess) {
-          Get.to(VerificationCodeScreen(),arguments: {'email' : bloc.emailController.text});
+          Get.back();
         }
       },
       builder: (context, state) {

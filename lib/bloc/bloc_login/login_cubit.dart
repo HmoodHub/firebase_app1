@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_app1/firebase/auth/FB_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,5 +45,11 @@ class LoginCubit extends Cubit<LoginState> {
 
   void loginApp(context) async {
     emit(LoginLoading());
+    bool login = await FBAuth.signIn(context, email: emailController.text, password: passController.text);
+    if (login) {
+      emit(LoginSuccess());
+    }  else{
+      emit(LoginError());
+    }
   }
 }

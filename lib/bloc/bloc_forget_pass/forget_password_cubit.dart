@@ -1,5 +1,6 @@
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_app1/firebase/auth/FB_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -18,5 +19,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   void resetPassword(context)async{
   emit(ForgetPasswordLoading());
+  bool resetPassword = await FBAuth.forgetPassword(context, email: emailController.text);
+  if (resetPassword) {
+    emit(ForgetPasswordSuccess());
+  }  else{
+    emit(ForgetPasswordError());
+  }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:firebase_app1/screens/auth/login_screen.dart';
+import 'package:firebase_app1/screens/luanch_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
             create: (context) => VerificationCodeCubit()..initVerificationScreen()
         ),
       ],
-      child: GetMaterialApp(
+      child: const GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: LaunchScreen(),
       ),
     );
   }

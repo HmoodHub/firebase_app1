@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names, unrelated_type_equality_checks
+// ignore_for_file: constant_identifier_names, unrelated_type_equality_checks, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -87,14 +87,13 @@ Widget textFormFieldApp(
   );
 }
 
-void toastMessage({
+void ShowToast({
   required String msg,
-  int? gravity,
   required Color state,
 }) {
   Toast.show(
    msg,
-    gravity: gravity,
+    gravity: Toast.bottom,
     backgroundColor: state,
   );
 }

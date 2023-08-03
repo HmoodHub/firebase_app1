@@ -7,7 +7,7 @@ import 'package:getwidget/getwidget.dart';
 
 import '../../bloc/bloc_login/login_cubit.dart';
 import '../../widget/wedget.dart';
-import '../category_screen.dart';
+import '../notes_screen.dart';
 import 'forget_password_screen.dart';
 
 
@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          Get.off(() => const CategoryScreen());
+          Get.off(() => const NotesScreen());
         }
       },
       builder: (context, state) {

@@ -16,11 +16,15 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RegisterCubit bloc = RegisterCubit.get(context);
     return BlocConsumer<RegisterCubit, RegisterState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is RegisterSuccess) {
+          Get.back();
+        }  
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Register'),
+            title: const Text('Register'),
             centerTitle: true,
             leading: IconButton(
               onPressed: () {
@@ -47,15 +51,6 @@ class RegisterScreen extends StatelessWidget {
                   height: 30,
                 ),
                 textFormFieldApp(
-                  controller: bloc.nameController,
-                  type: TextInputType.name,
-                  hint: 'Full Name',
-                  prefixIcon: Icons.email,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                textFormFieldApp(
                   controller: bloc.emailController,
                   type: TextInputType.emailAddress,
                   hint: 'E-mail',
@@ -75,43 +70,6 @@ class RegisterScreen extends StatelessWidget {
                   onPressedSuffix: () => bloc.visibilityPass(),
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      'Gender: ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: RadioListTile(
-                        contentPadding: EdgeInsets.zero,
-                        onChanged: (value) {
-                          bloc.onChangeRadio(value);
-                        },
-                        value: 'M',
-                        groupValue: bloc.gender,
-                        title: Text('Male'),
-                      ),
-                    ),
-                    Expanded(
-                      child: RadioListTile(
-                        contentPadding: EdgeInsets.zero,
-                        onChanged: (value) {
-                          bloc.onChangeRadio(value);
-                        },
-                        value: 'F',
-                        groupValue: bloc.gender,
-                        title: Text('Female'),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
                   height: 30,
                 ),
                 GFButton(
@@ -129,15 +87,15 @@ class RegisterScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Do have an account?',
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black),
                     ),
                     InkWell(
                       onTap: () {
                         Get.to(LoginScreen());
                       },
-                      child: Text(
+                      child: const Text(
                         ' Login',
                         style: TextStyle(
                           color: Colors.blue,
