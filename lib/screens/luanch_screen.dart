@@ -15,18 +15,24 @@ class LaunchScreen extends StatefulWidget {
 
 class _LaunchScreenState extends State<LaunchScreen> {
 
+  late StreamSubscription _streamSubscription;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      FBAuth.loggedIn(listener: ({required bool state}) {
+      _streamSubscription = FBAuth.loggedIn(listener: ({required bool state}) {
         Widget page = state ? const NotesScreen() : LoginScreen();
         Get.off(page);
       },);
     });
   }
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _streamSubscription.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

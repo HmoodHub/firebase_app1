@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_app1/widget/wedget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -82,8 +84,8 @@ class FBAuth {
     return false;
   }
 
-  static void loggedIn({required GetCurrentUser listener}) {
-    _firebaseAuth.authStateChanges().listen((User? user) {
+  static StreamSubscription loggedIn({required GetCurrentUser listener}) {
+    return _firebaseAuth.authStateChanges().listen((User? user) {
       listener(state: user != null);
     });
   }
